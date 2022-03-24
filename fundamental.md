@@ -12,7 +12,8 @@
 ![](image/2022-01-17-18-19-22.png)
 
 ## 图像的输入/输出和显示
-#### imread('filename')
+#### 读进
+`imread('filename')`
 
 支持多数流行图像格式如 `JPEG` `JPEG 2000` `TIFF`
 
@@ -20,17 +21,29 @@
 
 结尾处的分号用于抑制输出，若没有分号则该行操作的结果会显示在屏幕上
 
-#### imshow(f)
+#### 展示
+`imshow(f)`
+
 ```m
 >> f = imread('test.jpg');
 >> imshow(f)
 ```
 
-如想同时输出多张图片，如下
+#### 窗口句柄
 
-`>> figure,imshow(g)`
+`figure(number)` : 打开名为 number 的句柄
 
-#### imwrite(f,'filename')
+`close(number)` : 关闭 number 句柄
+
+`clf(number)` : 清除句柄的画面
+
+`subplot(m,n,p)` : 图集排成 m 行 n 列 , p = 1 表示从左到右从上到下第一个位置
+
+![](image/2022-03-24-12-03-10.png)
+
+#### 写出
+`imwrite(f,'filename')`
+
 1. `imwrite(f,'filename.jpg','quality',q)`
 $q\in [0,100]$ (数字越小，劣化越高)
 
@@ -39,20 +52,24 @@ parameter:
     * none 未压缩
     * packbits 默认用于非二值图像
 
-见 `p9(MATLAB)`
+见 `p9 gm`
 
 ## 类和图像类型
+**① 工具箱支持的类**
+
 ![](image/2022-01-17-18-49-54.png)
 
-工具箱支持 4 中图像类型
+**② 工具箱支持 4 种图像类型**
 * 灰度级图像 Gray-scale images
 * 二值图像 Binary images
 * 索引图像 Indexed images
 * RGB 图像 RGB images
 
-灰度级图像：矩阵的值表示灰度的浓淡
+详细描述见 `p16 z`
 
-二值图像：只有逻辑值 0 和 1
+**自此，我们的图像定义为 `class image_type` 如 `uint8 灰度级图像`**
+
+## 图像转化
 
 `islogical(C)` C 是逻辑数组返回 1 ，否则 0
 
@@ -66,4 +83,5 @@ parameter:
 
 `g = mat2gray(A,[Amin,Amax])`，A 中值小于 Amin 变为 0 ；大于 Amax 变为 1
 
-**自此，我们的图像定义为 `class image_type` 如 `uint8 灰度级图像`**
+
+更多见 `p18 z`
